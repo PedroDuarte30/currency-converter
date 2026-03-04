@@ -1,0 +1,79 @@
+@import url(variables.css);
+
+/*SETUP GLOBAL*/
+html { font-size: 62.5%; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* MOBILE FIRST: Tudo em coluna */
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  color: white;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+/*(MOBILE FIRST) */
+.container {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 40rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--secondary-color);
+}
+
+input, select {
+  padding: 1.2rem;
+  border: 0.2rem solid #e0e0e0;
+  border-radius: 0.8rem;
+  font-size: 1.4rem;
+  width: 100%;
+}
+
+button {
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+
+/*ADAPTAÇÃO PARA DESKTOP */
+@media (min-width: 769px) {
+  .container {
+    max-width: 50rem; 
+  }
+
+  .currency-group {
+    display: flex; 
+    gap: 2rem;
+  }
+
+  .currency-group .field {
+    flex: 1;
+  }
+}
