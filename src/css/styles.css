@@ -1,14 +1,20 @@
 @import url(variables.css);
 
 /*SETUP GLOBAL*/
-html { font-size: 62.5%; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  font-size: 62.5%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* MOBILE FIRST: Tudo em coluna */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: var(--bg-gradient);
@@ -17,7 +23,7 @@ body {
   gap: 2rem;
 }
 
-/*(MOBILE FIRST) */
+/*MOBILE FIRST*/
 .container {
   background: var(--card-bg);
   padding: 2.5rem;
@@ -40,7 +46,8 @@ label {
   color: var(--secondary-color);
 }
 
-input, select {
+input,
+select {
   padding: 1.2rem;
   border: 0.2rem solid #e0e0e0;
   border-radius: 0.8rem;
@@ -61,15 +68,37 @@ button {
   cursor: pointer;
 }
 
+#result-display {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  background: rgba(46, 204, 113, 0.1); 
+  border-radius: 0.8rem;
+  min-height: 5rem; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
 
-/*ADAPTAÇÃO PARA DESKTOP */
+#result-display:empty {
+  display: none;
+}
+
+#result-display:empty {
+  display: none;
+}
+
+/*DESKTOP*/
 @media (min-width: 769px) {
   .container {
-    max-width: 50rem; 
+    max-width: 50rem;
   }
 
   .currency-group {
-    display: flex; 
+    display: flex;
     gap: 2rem;
   }
 
