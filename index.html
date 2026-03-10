@@ -32,30 +32,32 @@
               required
               step="0.01"
             />
-          </div>
 
-          <div class="currency-group">
             <div class="field">
-              <label for="source-currency">From:</label>
-              <select id="source-currency">
-                <option value="USD">Dólar (USD)</option>
-                <option value="EUR">Euro (EUR)</option>
-                <option value="BRL">Real (BRL)</option>
-              </select>
+              <label>From:</label>
+              <div class="currency-wrapper">
+                <img id="source-flag" src="https://flagsapi.com/US/flat/64.png" width="30" />
+                <select id="source-currency">
+                  <option value="USD">USD - Dólar</option>
+                  <option value="EUR">EUR - Euro</option>
+                  <option value="BRL">BRL - Real Brasileiro</option>
+                </select>
+              </div>
             </div>
 
             <div class="field">
-              <label for="target-currency">To:</label>
-              <select id="target-currency">
-                <option value="EUR">Euro (EUR)</option>
-                <option value="USD">Dólar (USD)</option>
-                <option value="BRL">Real (BRL)</option>
-              </select>
+              <label>To:</label>
+              <div class="currency-wrapper">
+                <img id="target-flag" src="https://flagsapi.com/US/flat/64.png" width="30" />
+                <select id="target-currency">
+                  <option value="USD">USD - Dólar</option>
+                  <option value="EUR">EUR - Euro</option>
+                  <option value="BRL">BRL - Real Brasileiro</option>
+                </select>
+              </div>
             </div>
-          </div>
 
           <button type="submit">Convert</button>
-
           <p id="result-display"></p>
         </form>
       </section>

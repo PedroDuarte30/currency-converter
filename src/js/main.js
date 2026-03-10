@@ -18,28 +18,52 @@ converterForm.addEventListener('submit', async (event) => {
     const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${from}`;
 
     try {
-        resultDisplay.innerText = "A carregar...";
+        resultDisplay.innerText = "Loading...";
 
         const response = await fetch(url);
-        console.log("Resposta da API recebida:", response.status);
+        console.log("API response received:", response.status);
 
         const data = await response.json();
-        console.log("Dados da API:", data);
+        console.log("API data:", data);
 
         if (data.result === "success") {
             const rate = data.conversion_rates[to];
             const total = (amount * rate).toFixed(2);
 
-            const formattedAmount = Number(amount).toLocaleString('pt-PT', { style: 'currency', currency: from });
-            const formattedTotal = Number(total).toLocaleString('pt-PT', { style: 'currency', currency: to });
+            const formattedAmount = Number(amount).toLocaleString('en-EN', { style: 'currency', currency: from });
+            const formattedTotal = Number(total).toLocaleString('en-EN', { style: 'currency', currency: to });
 
             resultDisplay.innerText = `${formattedAmount} = ${formattedTotal}`;
         } else {
-            resultDisplay.innerText = `Erro da API: ${data['error-type']}`;
-            console.error("Erro detalhado:", data);
+            resultDisplay.innerText = `API error: ${data['error-type']}`;
+            console.error("Detailed error:", data);
         }
     } catch (error) {
-        console.error("Erro na requisição:", error);
-        resultDisplay.innerText = "Erro de conexão. Verifica a consola.";
+        console.error("Request error:", error);
+        resultDisplay.innerText = "Connection error. Check the console.";
     }
 });
+
+const sourceFlag = document.getElementById('source-flag');
+const targetFlag = document.getElementById('target-flag');
+
+const countryMap = {
+    "EUR": "PT", // Portugal
+    "USD": "US", // EUA
+    "GBP": "GB", // Reino Unido
+    "BRL": "BR", // Brasil
+    "JPY": "JP"  // Japão
+};
+
+function updateFlag(currencyCode, flagElement) {
+    let countryCode = countryMap[currencyCode] || currencyCode.slice(0, 2);
+    flagElement.src = `https://flagsapi.com/${countryCode}/flat/64.png`;
+}
+
+
+sourceCurrency.addEventListener('change', () => updateFlag(sourceCurrency.value, sourceFlag));
+targetCurrency.addEventListener('change', () => updateFlag(targetCurrency.value, targetFlag));
+
+
+updateFlag(sourceCurrency.value, sourceFlag);
+updateFlag(targetCurrency.value, targetFlag);
