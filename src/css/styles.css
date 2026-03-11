@@ -25,12 +25,16 @@ body {
 
 /*MOBILE FIRST*/
 .container {
-  background: var(--card-bg);
+  background: gba(255, 255, 255, 0.1);
   padding: 2.5rem;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
   width: 100%;
   max-width: 40rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .field {
@@ -44,16 +48,27 @@ body {
 label {
   font-weight: 600;
   font-size: 1.4rem;
-  color: var(--secondary-color);
 }
 
 input,
-select {
+select, .currency-wrapper {
   padding: 1.2rem;
   border: 0.2rem solid #e0e0e0;
   border-radius: 0.8rem;
   font-size: 1.4rem;
   width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+select, option {
+    color: black;
 }
 
 button {
@@ -125,6 +140,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 1.5rem;
   transition: transform 0.4s ease;
 }
 
