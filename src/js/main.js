@@ -6,42 +6,55 @@ const resultDisplay = document.getElementById('result-display');
 
 const apiKey = 'c8c0a97dfdd08724ee2dacc9';
 
-converterForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
+async function convertCurrency() {
     const amount = amountInput.value;
     const from = sourceCurrency.value;
     const to = targetCurrency.value;
 
-    console.log(`A tentar converter ${amount} de ${from} para ${to}...`);
+    if (!amount || amount <= 0) {
+        resultDisplay.innerText = "";
+        return;
+    }
 
     const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${from}`;
 
     try {
-        resultDisplay.innerText = "Loading...";
+        resultDisplay.style.opacity = "0.5";
 
         const response = await fetch(url);
-        console.log("API response received:", response.status);
-
         const data = await response.json();
-        console.log("API data:", data);
 
-        if (data.result === "success") {
+        if(data.result === "success") {
             const rate = data.conversion_rates[to];
             const total = (amount * rate).toFixed(2);
 
-            const formattedAmount = Number(amount).toLocaleString('en-EN', { style: 'currency', currency: from });
-            const formattedTotal = Number(total).toLocaleString('en-EN', { style: 'currency', currency: to });
+            const formattedAmount = Number(amount).toLocaleString('pt-PT', {style: 'currency', currency: from});
+            const formattedTotal = Number(total).toLocaleString('pt-PT', {style: 'currency', currency: to});
 
             resultDisplay.innerText = `${formattedAmount} = ${formattedTotal}`;
-        } else {
-            resultDisplay.innerText = `API error: ${data['error-type']}`;
-            console.error("Detailed error:", data);
+            resultDisplay.style.opacity = "1";
         }
     } catch (error) {
-        console.error("Request error:", error);
-        resultDisplay.innerText = "Connection error. Check the console.";
+        console.log("Conversion error:", error);
+        resultDisplay.innerText = "Connection error";
     }
+}
+
+amountInput.addEventListener('input', convertCurrency);
+
+sourceCurrency.addEventListener('change', () => {
+    updateFlag(sourceCurrency.value, sourceFlag);
+    convertCurrency();
+});
+
+targetCurrency.addEventListener('change', () => {
+    updateFlag(targetCurrency.value, targetFlag);
+    convertCurrency();
+});
+
+converterForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    convertCurrency();
 });
 
 const sourceFlag = document.getElementById('source-flag');
@@ -79,4 +92,7 @@ swapBtn.addEventListener('click', () => {
     updateFlag(targetCurrency.value, targetFlag);
 
     converterForm.dispatchEvent(new Event('submit'));
+
+    convertCurrency();
 })
+
