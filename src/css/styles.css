@@ -38,6 +38,7 @@ body {
   flex-direction: column;
   gap: 0.8rem;
   margin-bottom: 1.5rem;
+  width: 100;
 }
 
 label {
@@ -95,6 +96,7 @@ button {
   border: 0.2rem solid #e0e0e0;
   border-radius: 0.8rem;
   padding: 0.5rem 1rem;
+  width: 100%;
 }
 
 .currency-wrapper img {
@@ -108,18 +110,52 @@ button {
   padding: 0.7rem;
 }
 
+.swap-container {
+  display: flex;
+  justify-content: center;
+  margin: -10px 0;
+  z-index: 10;
+}
+
+#swap-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 0.8rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+#swap-btn:active {
+  transform: scale(0.9) rotate(180deg);
+}
+
 /*DESKTOP*/
 @media (min-width: 769px) {
   .container {
-    max-width: 50rem;
+    max-width: 60rem;
+
   }
 
   .currency-group {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .currency-group .field {
     flex: 1;
+    margin-bottom: 0;
+  }
+
+  .swap-container {
+    margin: 2rem 0 0 0; 
+  }
+
+  #swap-btn {
+    transform: rotate(90deg); /* No desktop, as setas ficam horizontais */
   }
 }

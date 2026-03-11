@@ -64,6 +64,19 @@ function updateFlag(currencyCode, flagElement) {
 sourceCurrency.addEventListener('change', () => updateFlag(sourceCurrency.value, sourceFlag));
 targetCurrency.addEventListener('change', () => updateFlag(targetCurrency.value, targetFlag));
 
-
 updateFlag(sourceCurrency.value, sourceFlag);
 updateFlag(targetCurrency.value, targetFlag);
+
+const swapBtn = document.getElementById('swap-btn');
+
+swapBtn.addEventListener('click', () => {
+    const tempValue = sourceCurrency.value;
+
+    sourceCurrency.value = targetCurrency.value;
+    targetCurrency.value = tempValue;
+
+    updateFlag(sourceCurrency.value, sourceFlag);
+    updateFlag(targetCurrency.value, targetFlag);
+
+    converterForm.dispatchEvent(new Event('submit'));
+})
