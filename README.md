@@ -39,4 +39,5 @@ JavaScript
 Exchange Rate API
 
 📷 Screenshot
-<img width="1850" height="858" alt="Captura de ecrã 2026-03-09 112857" src="https://github.com/user-attachments/assets/ca3ca356-3bdc-44c5-baa9-d100a8f9f32a" />
+<img width="1912" height="898" alt="Captura de ecrã 2026-03-11 103513" src="https://github.com/user-attachments/assets/e5268c93-b79c-4839-9bf5-4e6655659df2" />
+
